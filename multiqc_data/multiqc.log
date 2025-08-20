@@ -1,0 +1,9 @@
+[2025-08-13 11:36:32,861] multiqc.core.version_check                         [WARNING]  MultiQC Version v1.30 now available!
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/father_R1_fastqc.zip
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/father_R2_fastqc.zip
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/mother_R1_fastqc.zip
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/mother_R2_fastqc.zip
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/proband_R1_fastqc.zip
+[2025-08-13 11:36:32,861] multiqc.core.file_search                           [INFO   ]  Search path: /home/student/OneDrive/Documents/Om/Downloads/exomesequencing/proband_R2_fastqc.zip
+[2025-08-13 11:36:32,911] multiqc.modules.fastqc.fastqc                      [INFO   ]  Found 6 reports
+[2025-08-13 11:36:32,971] multiqc.plots.violin                               [WARNING]  Tried to make table/violin plot, but had no data. pconfig: {'namespace': 'FastQC', 'id': 'fastqc_top_overrepresented_sequences_table', 'title': 'FastQC: Top overrepresented sequences', 'col1_header': 'Overrepresented sequence', 'sort_rows': False}

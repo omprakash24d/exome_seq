@@ -1,0 +1,7 @@
+Sample	Unique Reads	Duplicate Reads
+father_R1	1554816.0	468655.0
+father_R2	1590597.0	432874.0
+mother_R1	1362236.0	413863.0
+mother_R2	1386984.0	389115.0
+proband_R1	1783929.0	608625.0
+proband_R2	1839801.0	552753.0

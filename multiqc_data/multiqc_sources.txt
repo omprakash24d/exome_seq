@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	father_R1	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/father_R1_fastqc.zip
+FastQC	all_sections	father_R2	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/father_R2_fastqc.zip
+FastQC	all_sections	mother_R1	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/mother_R1_fastqc.zip
+FastQC	all_sections	mother_R2	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/mother_R2_fastqc.zip
+FastQC	all_sections	proband_R1	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/proband_R1_fastqc.zip
+FastQC	all_sections	proband_R2	/home/student/OneDrive/Documents/Om/Downloads/exomesequencing/proband_R2_fastqc.zip
