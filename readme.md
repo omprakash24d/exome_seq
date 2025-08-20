@@ -132,7 +132,12 @@ to quit and return to the command prompt.
 * Use `samtools` for BAM file processing and viewing.
 
 ---
-
+## SeqKit Stats
+```
+seqkit stats *gz
+seqkit -less 20 father_R1.fq.gz 
+seqkit stats *gz -a
+```
 
 ## BWA MEM2
 ```

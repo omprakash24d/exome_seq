@@ -31,7 +31,24 @@ conda activate exome-seq
 Install the essential bioinformatics tools:
 
 ```bash
-conda install -c bioconda fastqc bwa samtools picard freebayes bcftools snpsift
+sudo apt update conda
+conda install -c bioconda picard freebayes bcftools snpsift
+conda install bioconda::trimmomatic
+conda install bioconda::fastqc
+conda install bioconda::seqkit
+conda install bioconda::multiqc
+conda install bioconda::cutadapt
+conda install bioconda::bwa
+conda install bioconda::hisat2
+conda install bioconda::gatk
+conda install bioconda::star
+conda install bioconda::minimap
+conda install bioconda::samtools
+conda install bioconda::bcftools
+conda install bioconda::bowtie
+conda install bioconda::freebayes
+conda install -c bioconda sra-tools
+
 ```
 
 These tools are commonly used in exome sequencing workflows.
@@ -68,14 +85,13 @@ Create the environment from it:
 Check the installed tools to ensure everything is set up correctly:
 
 ```bash
-fastqc --version
+fastqc
 bwa
 samtools
 picard
 freebayes
 bcftools
+
 ```
 
 ---
-
-By following these steps, you'll have a Conda environment ready for the Galaxy Exome Sequencing tutorial. If you encounter any issues or need further assistance, feel free to ask!
