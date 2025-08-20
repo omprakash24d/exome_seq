@@ -20,14 +20,15 @@ wget https://zenodo.org/record/3243160/files/father_R1.fq.gz \
 
 ---
 
-## **2️⃣ Install Required Software (Conda recommended)**
-
-```bash
-conda create -n exome_pipeline bwa samtools bcftools freebayes snpeff gemini seqkit -c bioconda -c conda-forge
-conda activate exome_pipeline
+# Create the Conda environment from the YAML file
+```
+conda env create -f environment.yml
 ```
 
----
+# Activate the environment
+```
+conda activate exome-seq
+```
 
 ## **3️⃣ Prepare Reference Genome**
 
