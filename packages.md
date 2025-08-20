@@ -1,7 +1,3 @@
-Absolutely! Let's set up the necessary Conda environment on your Linux system to follow the Galaxy Exome Sequencing tutorial. Here's how you can proceed:
-
----
-
 ### 🧪 Step 1: Add Required Conda Channels
 
 Ensure that Conda is configured to access the necessary channels:
@@ -65,7 +61,7 @@ conda install -c bioconda gatk4 bcftools bedtools
 
 ---
 
-### 📄 Optional: Use an Environment File
+### Use an Environment File
 
 If you have an `environment.yml` file specifying the required packages, you can create the environment as follows:
 
@@ -78,20 +74,4 @@ conda env create -f environment.yml
 Save the file as environment.yml in a folder.
 
 Create the environment from it:
----
-
-### ✅ Step 4: Verify the Installation
-
-Check the installed tools to ensure everything is set up correctly:
-
-```bash
-fastqc
-bwa
-samtools
-picard
-freebayes
-bcftools
-
-```
-
 ---

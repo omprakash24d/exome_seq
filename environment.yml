@@ -4,11 +4,55 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
-  - fastqc
-  - bwa
-  - samtools
-  - picard
-  - freebayes
-  - bcftools
-  - snpeff-5.2 
+  - python=3.8  # Programming language
+
+  # ----------------------------
+  # Quality Control
+  # ----------------------------
+  - fastqc          # QC: FastQ quality control
+  - multiqc         # QC: Aggregate QC reports
+  - trimmomatic     # Trimming: Adapter & quality trimming
+  - cutadapt        # Trimming: Adapter trimming alternative
+  - fastp           # Trimming & QC: fast, integrated tool
+
+  # ----------------------------
+  # Sequence Alignment
+  # ----------------------------
+  - bwa             # Alignment: short-read aligner
+  - bowtie2         # Alignment: alternative short-read aligner
+  - hisat2          # Alignment: spliced aligner (RNA-seq)
+  - star            # Alignment: spliced aligner for RNA-seq
+  - minimap2        # Alignment: long-read aligner
+
+  # ----------------------------
+  # Post-processing
+  # ----------------------------
+  - samtools        # BAM/VCF processing
+  - picard          # BAM processing, duplicate marking
+  - gatk            # Variant calling & preprocessing
+  - bcftools        # VCF/BAM manipulation
+  - bedtools        # Genomic interval operations
+
+  # ----------------------------
+  # Variant Calling & Annotation
+  # ----------------------------
+  - freebayes       # Variant caller
+  - snpeff-5.2      # Variant annotation
+  - snpsift         # Variant filtering/processing
+  - varscan         # Variant caller (low-frequency)
+  - ensembl-vep     # Variant Effect Predictor (annotation)
+
+  # ----------------------------
+  # Utilities
+  # ----------------------------
+  - seqkit          # FASTA/FASTQ manipulation
+  - sra-tools       # Download data from NCBI SRA
+  - samblaster      # Mark duplicates during alignment
+  - fastq-screen    # Check contamination in FastQ files
+
+  # ----------------------------
+  # Optional RNA-seq / expression tools
+  # ----------------------------
+  - stringtie       # Transcript assembly
+  - featurecounts   # Gene expression quantification
+  - r-base          # Required for DESeq2 / edgeR (R packages)
