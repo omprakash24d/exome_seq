@@ -1,6 +1,4 @@
-Sure! Here's a `README.md` file summarizing everything we've done — from downloading files, installing tools, running `bwa mem`, and viewing BAM files. You can save this and refer to it anytime.
 
-````markdown
 # Exome Sequencing Analysis Pipeline
 
 ## Overview
@@ -13,7 +11,7 @@ This guide covers downloading sequencing data, preparing the reference genome, a
 
 Run this command to download all paired-end FASTQ files:
 
-```bash
+```
 wget https://zenodo.org/record/3243160/files/father_R1.fq.gz \
      https://zenodo.org/record/3243160/files/father_R2.fq.gz \
      https://zenodo.org/record/3243160/files/mother_R1.fq.gz \
@@ -28,13 +26,13 @@ wget https://zenodo.org/record/3243160/files/father_R1.fq.gz \
 
 ### Using Conda
 
-```bash
+```
 conda install -c bioconda bwa samtools
 ```
 
 ### Manual Installation of BWA (optional)
 
-```bash
+```
 git clone https://github.com/lh3/bwa.git
 cd bwa
 make
@@ -47,13 +45,13 @@ sudo cp bwa /usr/local/bin/
 
 If your reference genome is compressed (`.fa.gz`), decompress it first:
 
-```bash
+```
 gunzip hg19_chr8.fa.gz
 ```
 
 Index the reference genome for `bwa`:
 
-```bash
+```
 bwa index hg19_chr8.fa
 ```
 
@@ -63,7 +61,7 @@ bwa index hg19_chr8.fa
 
 For paired-end reads (recommended):
 
-```bash
+```
 bwa mem hg19_chr8.fa father_R1.fq.gz father_R2.fq.gz > father.sam
 bwa mem hg19_chr8.fa mother_R1.fq.gz mother_R2.fq.gz > mother.sam
 bwa mem hg19_chr8.fa proband_R1.fq.gz proband_R2.fq.gz > proband.sam
@@ -71,7 +69,7 @@ bwa mem hg19_chr8.fa proband_R1.fq.gz proband_R2.fq.gz > proband.sam
 
 For single-end reads (if only one FASTQ file is available):
 
-```bash
+```
 bwa mem hg19_chr8.fa father_R1.fq.gz > father_single.sam
 ```
 
@@ -79,7 +77,7 @@ bwa mem hg19_chr8.fa father_R1.fq.gz > father_single.sam
 
 ## 5. Convert SAM to BAM
 
-```bash
+```
 samtools view -Sb father.sam > father.bam
 ```
 
@@ -91,25 +89,25 @@ Repeat for other samples as needed.
 
 * View BAM as text:
 
-  ```bash
+  ```
   samtools view father.bam | less -S
   ```
 
 * View BAM with header:
 
-  ```bash
+  ```
   samtools view -h father.bam | less -S
   ```
 
 * Get alignment statistics:
 
-  ```bash
+  ```
   samtools flagstat father.bam
   ```
 
 * Count reads:
 
-  ```bash
+  ```
   samtools view -c father.bam
   ```
 
@@ -135,14 +133,6 @@ to quit and return to the command prompt.
 
 ---
 
-Feel free to expand this README with downstream analysis steps or additional tools as needed.
-
-```
-
----
-
-If you want, I can also help you generate a script to automate these steps!
-```
 
 ## BWA MEM2
 ```
@@ -177,38 +167,58 @@ bwa mem -R '@RG\tID:002\tSM:proband\tPL:ILLUMINA' \
 > ~/OneDrive/Om/exomesequencing/mapped/proband.sam
 
 ```
-# Father
+### Father
+```
 samtools view -bS father.sam | samtools sort -o father.sorted.bam
+```
 
-# Mother
+### Mother
+```
 samtools view -bS mother.sam | samtools sort -o mother.sorted.bam
+```
 
-# Child/Proband
+### Child/Proband
+```
 samtools view -bS proband.sam | samtools sort -o child.sorted.bam
+```
 
 ### Output
 -bS → convert SAM to BAM
 
-# Father
+## Filter 
+
+### Father
+```
 samtools sort -n -o father.qname.sorted.bam father.filtered.bam
+```
 
-# Mother
+### Mother
+```
 samtools sort -n -o mother.qname.sorted.bam mother.filtered.bam
+```
 
-# Child
+### Child
+```
 samtools sort -n -o child.qname.sorted.bam child.filtered.bam
+```
 
 ### Note
 -f 3 → keep only properly paired reads.
 # Fixmate
-# Father
+### Father
+```
 samtools fixmate -m father.filtered.bam father.fixmate.bam
+```
 
-# Mother
+### Mother
+```
 samtools fixmate -m mother.filtered.bam mother.fixmate.bam
+```
 
-# Child
+### Child
+```
 samtools fixmate -m child.filtered.bam child.fixmate.bam
+```
 
 ### Short Reads
 ```
@@ -243,7 +253,7 @@ markdup → BAM must be coordinate sorted.
 
 Always filter proper pairs (-f 3) before fixmate/markdup.
 
-If you want, I can write a full one-shot Bash script that does:
+If you want, I can write a full one-shot  script that does:
 
 SAM → BAM → filter proper pairs
 
@@ -251,8 +261,8 @@ Queryname sort → fixmate
 
 Coordinate sort → markdup → index
 
-### Bash Script to do it
-Perfect! Here’s a **complete Bash script** that will take your **SAM files** for father, mother, and child, and do all the postprocessing steps in the correct order:
+###  Script to do it
+Perfect! Here’s a **complete  script** that will take your **SAM files** for father, mother, and child, and do all the postprocessing steps in the correct order:
 
 * Convert SAM → BAM
 * Filter for properly paired reads
@@ -262,10 +272,10 @@ Perfect! Here’s a **complete Bash script** that will take your **SAM files** f
 
 You can save this as, for example, `process_trio.sh` and run it.
 
-```bash
-#!/bin/bash
+```
+#!/bin/
 # Process mapped reads for a trio: father, mother, child
-# Usage: bash process_trio.sh
+# Usage:  process_trio.sh
 
 # Paths to SAM files
 FATHER_SAM=~/OneDrive/Om/exomesequencing/mapped/father.sam
@@ -321,21 +331,21 @@ echo "All samples processed successfully!"
 
 1. Save the script:
 
-```bash
+```
 nano process_trio.sh
 # Paste the script and save (Ctrl+O, Enter, Ctrl+X)
 ```
 
 2. Make it executable:
 
-```bash
+```
 chmod +x process_trio.sh
 ```
 
 3. Run it:
 
-```bash
-bash process_trio.sh
+```
+ process_trio.sh
 ```
 
 ---
@@ -381,14 +391,14 @@ hg19_chr8.fa
 
 ## **Step 1: Install FreeBayes (if not already installed)**
 
-```bash
+```
 sudo apt update
 sudo apt install freebayes
 ```
 
 Or, for the latest version:
 
-```bash
+```
 conda install -c bioconda freebayes
 ```
 
@@ -398,7 +408,7 @@ conda install -c bioconda freebayes
 
 FreeBayes can accept multiple BAM files and output a single **VCF** file with genotypes for all samples.
 
-```bash
+```
 freebayes -f ~/OneDrive/Om/exomesequencing/reference_genome/hg19_chr8.fa \
 father.dedup.bam mother.dedup.bam child.dedup.bam \
 > trio_variants.vcf
@@ -414,7 +424,7 @@ father.dedup.bam mother.dedup.bam child.dedup.bam \
 
 ### **Optional parameters for simple diploid calling** (matching Galaxy “Simple diploid calling”):
 
-```bash
+```
 freebayes -f hg19_chr8.fa \
 --ploidy 2 \
 --min-alternate-count 1 \
@@ -444,19 +454,19 @@ The VCF is a **tab-delimited text file** that contains:
 
 You can view it with:
 
-```bash
+```
 less -S trio_variants.vcf
 ```
 
 or
 
-```bash
+```
 head trio_variants.vcf
 ```
 
 For prettier inspection:
 
-```bash
+```
 bcftools view trio_variants.vcf | less -S
 ```
 
@@ -478,7 +488,6 @@ If you want, I can provide a **full Linux script** that:
 
 This will mimic what Galaxy does automatically.
 
-Do you want me to do that?
 # Post Processing
 Perfect! Now we’re moving to **post-processing your FreeBayes VCF** so it’s compatible with downstream annotation tools like SnpEff, GEMINI, or bcftools. On Linux, the equivalent of Galaxy’s `bcftools norm` workflow can be done directly with `bcftools`.
 
@@ -495,7 +504,7 @@ hg19_chr8.fa
 
 We use `bcftools norm` with the following options:
 
-```bash
+```
 bcftools norm -f ~/OneDrive/Om/exomesequencing/reference_genome/hg19_chr8.fa \
 -m -both \
 --check-ref w \
@@ -521,13 +530,13 @@ trio_variants.vcf
 
 You can check how many variants were split, realigned, or skipped using:
 
-```bash
+```
 bcftools view trio_variants.norm.vcf | head
 ```
 
 Or for a **detailed count**:
 
-```bash
+```
 bcftools stats trio_variants.norm.vcf > trio_variants.norm.stats.txt
 less trio_variants.norm.stats.txt
 ```
@@ -538,7 +547,7 @@ less trio_variants.norm.stats.txt
 
 ## **Step 3: Optional — compress & index normalized VCF**
 
-```bash
+```
 bgzip trio_variants.norm.vcf
 tabix -p vcf trio_variants.norm.vcf.gz
 ```
@@ -575,19 +584,19 @@ The **best solution** here is to use **Conda**, which will provide a self-contai
 
 1. **Create a Conda environment with bcftools:**
 
-```bash
+```
 conda create -n bioinfo bcftools=1.17 samtools=1.17 -c bioconda -c conda-forge
 ```
 
 2. **Activate the environment:**
 
-```bash
+```
 conda activate bioinfo
 ```
 
 3. **Check bcftools is working:**
 
-```bash
+```
 bcftools --version
 ```
 
@@ -599,7 +608,7 @@ bcftools 1.17
 
 4. **Run your normalization command inside the Conda environment:**
 
-```bash
+```
 bcftools norm -f ~/OneDrive/Om/exomesequencing/reference_genome/hg19_chr8.fa \
 -m -both \
 --check-ref w \
@@ -620,7 +629,7 @@ Perfect! That means your reference FASTA is already indexed. We can now fix the 
 
 ### **Step 1: Get chr8 length from the index**
 
-```bash
+```
 cut -f1,2 /home/thirdsem/OneDrive/Om/exomesequencing/reference_genome/hg19_chr8.fa.fai
 ```
 
@@ -634,7 +643,7 @@ chr8    146364022
 
 ### **Step 2: Create a contig header file**
 
-```bash
+```
 echo "##contig=<ID=chr8,length=146364022>" > /home/thirdsem/OneDrive/Om/exomesequencing/mapped/contig_header.txt
 ```
 
@@ -642,7 +651,7 @@ echo "##contig=<ID=chr8,length=146364022>" > /home/thirdsem/OneDrive/Om/exomeseq
 
 ### **Step 3: Prepend contig line to your VCF**
 
-```bash
+```
 bcftools reheader -h <(cat /home/thirdsem/OneDrive/Om/exomesequencing/mapped/contig_header.txt <(grep '^#' /home/thirdsem/OneDrive/Om/exomesequencing/mapped/trio_variants.vcf)) \
 -o /home/thirdsem/OneDrive/Om/exomesequencing/mapped/trio_variants.headered.vcf \
 /home/thirdsem/OneDrive/Om/exomesequencing/mapped/trio_variants.vcf
@@ -652,7 +661,7 @@ bcftools reheader -h <(cat /home/thirdsem/OneDrive/Om/exomesequencing/mapped/con
 
 ### **Step 4: Normalize the VCF**
 
-```bash
+```
 bcftools norm -f /home/thirdsem/OneDrive/Om/exomesequencing/reference_genome/hg19_chr8.fa \
 -m -both \
 --check-ref w \
@@ -666,4 +675,4 @@ bcftools norm -f /home/thirdsem/OneDrive/Om/exomesequencing/reference_genome/hg1
 
 If you want, I can also give the **final one-liner script** that does everything from header fix → normalization → compression → tabix indexing in one go. It’s very handy for your workflow.
 
-Do you want me to do that?
+
