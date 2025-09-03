@@ -95,5 +95,6 @@ variant_calling/snpEff/snpEff/data/GRCh37.75/sequence.6.bin
 variant_calling/snpEff/snpEff/data/GRCh37.75/sequence.3.bin
 variant_calling/snpEff/snpEff/data/GRCh37.75/sequence.10.bin
 variant_calling/snpEff/snpEff/data/GRCh37.75/sequence.17.bin
+variant_calling/trio_variants.snpeff.vcf
 trimmed_data/*.fq.gz
 trimmed_data/*.fq.gz

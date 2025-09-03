@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Max file size in MB
-MAX_SIZE=10
+MAX_SIZE=150
 
 # Create .gitignore if it doesn't exist
 touch .gitignore

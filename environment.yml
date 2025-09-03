@@ -56,3 +56,4 @@ dependencies:
   - stringtie       # Transcript assembly
   - featurecounts   # Gene expression quantification
   - r-base          # Required for DESeq2 / edgeR (R packages)
+  - gemini

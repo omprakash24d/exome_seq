@@ -1,9 +1,4 @@
 # **Exome Sequencing Analysis Pipeline**
-## Overview
-
-This guide covers downloading sequencing data, preparing the reference genome, aligning reads with `bwa mem`, and viewing the resulting BAM files using `samtools`.
-
----
 
 ## **1️⃣ Download FASTQ Files**
 
@@ -66,6 +61,14 @@ hg19_chr8.fa mother_R1.fq.gz mother_R2.fq.gz > mother.sam
 # Proband
 bwa mem -R '@RG\tID:002\tSM:proband\tPL:ILLUMINA' \
 hg19_chr8.fa proband_R1.fq.gz proband_R2.fq.gz > proband.sam
+```
+### Convert SAM to BAM
+```
+samtools view -h -b -o father.sam
+```
+### Mapping Statics
+```
+samtools flagstat mapped/father.fixmate.bam 
 ```
 
 ---
@@ -160,27 +163,16 @@ java -jar snpEff.jar -v GRCh37.75 trio_variants.norm.vcf > trio_variants.snpeff.
 
 ## **9️⃣ Load Annotated VCF into GEMINI**
 
-```bash
-gemini load -v trio_variants.snpeff.vcf -p trio.ped --cores 4 --skip-sanity-check --force trio.db
 ```
+conda create -n gemini3 python=3.10
+conda activate gemini3
+pip install --upgrade pip==20.3.4
+pip install git+https://github.com/arq5x/gemini.git
+gemini update --dataonly
+gemini load -v trio_variants.snpeff.vcf -p trio.ped trio.db
 
-*Check variants:*
 
-```bash
-gemini query -q "SELECT count(*) FROM variants;" trio.db
-gemini de_novo trio.db
-```
 
----
-
-## **10️⃣ Optional: Inspect & Export**
-
-```bash
-# Filter by impact
-gemini query -q "SELECT * FROM variants WHERE impact_severity='HIGH' OR impact_severity='MED';" trio.db
-
-# Export CSV
-gemini query -q "SELECT chrom, start, end, gene, impact, genotype_father, genotype_mother, genotype_proband FROM variants;" trio.db -o annotated_variants.csv
 ```
 
 ---

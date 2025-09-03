@@ -44,6 +44,8 @@ conda install bioconda::bcftools
 conda install bioconda::bowtie
 conda install bioconda::freebayes
 conda install -c bioconda sra-tools
+conda install -c bioconda gemini
+
 
 ```
 

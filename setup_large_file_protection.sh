@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Maximum allowed file size in MB
-MAX_SIZE=10
+MAX_SIZE=150
 
 # --- Step 1: Add large files to .gitignore ---
 touch .gitignore

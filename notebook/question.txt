@@ -1,0 +1,1 @@
+depth column ka matlab kyaa hai, after that we are aligning gene given cordinate given, genes are btn those coordinate, how much read aligned depth kitnaa hai us region, kitna % of chromosome covered hai usme
